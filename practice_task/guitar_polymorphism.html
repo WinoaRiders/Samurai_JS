@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Guitar {
+            constructor(Base) {
+                this.base = Base;
+            }
+        }
+
+        class ClassicGuitar extends Guitar {
+            constructor(Base, Classic) {
+                super(Base);
+                this.classic = Classic;
+            }
+
+            makeguitar(base, classic) {
+                return (classic + base);
+            }
+        }
+
+        class ErectoricGuitar extends Guitar {
+            constructor(Base, Erectoric) {
+                super(Base);
+                this.erectoric = Erectoric;
+            }
+
+            makeguitar(base, erectoric) {
+                return (erectoric + base);
+            }
+        }
+
+        class FolkGuitar extends Guitar {
+            constructor(Base, Folk) {
+                super(Base);
+                this.folk = Folk;
+            }
+
+            makeguitar(base, folk) {
+                return (folk + base);
+            }
+        }
+
+        const classic = new ClassicGuitar("ギター", "クラシック");
+        const erectoric = new ErectoricGuitar("ギター", "エレキ");
+        const folk = new FolkGuitar("ギター", "フォーク");
+
+        console.log(classic.makeguitar(classic.base, classic.classic));
+        console.log(erectoric.makeguitar(erectoric.base, erectoric.erectoric));
+        console.log(folk.makeguitar(folk.base, folk.folk));
+
+    </script>
+</body>
+
+</html>
