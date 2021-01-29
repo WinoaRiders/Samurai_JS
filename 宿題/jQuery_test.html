@@ -21,11 +21,11 @@
             border: 1px solid #aaa;
         }
 
-            /* {
+        .back {
             padding: 5px 10px;
             background-color: #666;
             color: #fff;
-        } */
+        }
     </style>
 </head>
 
@@ -47,11 +47,13 @@
     <script src="jquery-3.5.1.min.js"></script>
     <script>
 // id属性値がtitleのdiv要素に対してmargin-bottomの値を50pxにする
-$("#title").css("margin-bottom", "50px");
+        $('div[id^="title"]').css("margin-bottom", "50px");
 // h1要素に対してtext-alignの値をcenterにする
+        $('h1').css("text-align", "center");
 // ul要素に対してstyleタグ内に記述されたlistクラスを適用させる
+        $("ul").addClass("list");
 // time要素に対して以下のCSSを設定する
-
+        $("time").addClass("back");
     </script>
 </body>
 
