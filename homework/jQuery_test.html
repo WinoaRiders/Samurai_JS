@@ -4,26 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery課題</title>
+    <title>クリックゲーム</title>
+    <style>
+        #wrap {
+            width: 400px;
+            text-align: center;
+        }
+
+        #text {
+            width: 400px;
+            height: 180px;
+            margin: auto;
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 2em;
+            color: #fff;
+            background-color: #666;
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="wrap">
+        <h1>10</h1>
+        <div id="text">ここをクリックする</div>
+    </div>
 
-    <body>
-        <ul></ul>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        let time = 10;
+        let score = 0;
 
-        <script src="jquery-3.5.1.min.js"></script>
-        <script>
-            const os = ["windows", "Mac OS", "Linux", "iOS", "Android"];
-
-            for (let i = 0; i < os.length; i++) {
-                const list = $("<li>", { text: os[i] });
-
-                // 生成したHTML要素を画面に表示する
-                $('ul').append(list);
+        const id = setInterval(() => {
+            if (time < 0) {
+                //タイマーが0になった時の処理
+                clearInterval(id);
+                $("h1").text("終了！");
             }
-        </script>
-    </body>
+            //カウントダウンを表示する処理
+            $("h1").text(time);
+            time--;
+        }, 1000);
+        //クリックしたときにスコアを1ずつ加算する処理
+        $("div").on("click", () => {
+            score++;
+        })
+    </script>
 </body>
 
 </html>
