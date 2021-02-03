@@ -40,16 +40,16 @@
             if (time < 0) {
                 //タイマーが0になった時の処理
                 clearInterval(id);
-                $("h1").text("終了！");
+                alert("結果は" + score + "回でした！");
+                time = "更新してください[F5キー]";
             }
+
             //カウントダウンを表示する処理
-            $("h1").text(time);
-            time--;
+            $("h1").text(time--);
         }, 1000);
+
         //クリックしたときにスコアを1ずつ加算する処理
-        $("div").on("click", () => {
-            score++;
-        })
+        $("#text").on("click", () => score++);
     </script>
 </body>
 
