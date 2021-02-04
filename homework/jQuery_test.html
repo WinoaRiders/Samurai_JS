@@ -1,51 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スライド</title>
-
-    <style>
-        body {
-            text-align: center;
-        }
-        #slide img {
-            margin: auto;
-            display: none;
-        }
-    </style>
+    <title>Document</title>
 </head>
-
 <body>
-    <div id="slide">
-        <img src="images/sample1.jpg" alt="">
-        <img src="images/sample2.jpg" alt="">
-        <img src="images/sample3.jpg" alt="">
-    </div>
-    <button id="rev">前へ</button>
-    <button id="next">次へ</button>
+    <input id="target" type="text">
+    <button>取得</button>
+    <ul></ul>
 
     <script src="jquery-3.5.1.min.js"></script>
     <script>
-        const images = $("#slide img")
-        let counter = 0;
-        let index = 0;
+        const url = "https://api.github.com/search/repositories?q="
 
-        images.eq(index).show();
-        $("#next").click(() => {
-            images.eq(index).hide();
-            index = ++counter % images.length;
-            images.eq(index).fadeIn();
-        })
+        $("button").on("click", () => {
+            // GitHub APIを利用して、任意のキーワードに関連したリポジトリの一覧を表示するサンプルアプリを作ってみましょう。
+            $.ajax({
+                url:url + $("#target").val(),
+                dataType:"json",
+            }).done(data => {
+                console.log(data);
 
-        $("#rev").click(() => {
-            images.eq(index).hide();
-            index = --counter % images.length;
-            images.eq(index).fadeIn();
+                $('ul').empty();
+
+                $.each(data.items, (index, value) => {
+                    const elements = `<a href=${value.html_url}><li>${value.full_name}</li></a>`;
+
+                        $('ul').append(elements);
+                })
+            })
         })
-        console.log(images);
     </script>
 </body>
-
 </html>
