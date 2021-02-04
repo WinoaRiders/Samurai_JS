@@ -4,52 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>クリックゲーム</title>
-    <style>
-        #wrap {
-            width: 400px;
-            text-align: center;
-        }
-
-        #text {
-            width: 400px;
-            height: 180px;
-            margin: auto;
-            display: table-cell;
-            vertical-align: middle;
-            font-size: 2em;
-            color: #fff;
-            background-color: #666;
-            user-select: none;
-        }
-    </style>
+    <title>Document</title>
 </head>
 
 <body>
-    <div id="wrap">
-        <h1>10</h1>
-        <div id="text">ここをクリックする</div>
-    </div>
+    <form action="">
+        <p>
+            名前：
+            <input type="text" name="username">
+        </p>
+        <p>
+            性別：
+            <input type="radio" name="sex" value="male">男
+            <input type="radio" name="sex" value="female">女
+        </p>
+        <p>
+            趣味：
+            <input type="checkbox" name="hobby" value="book">読書
+            <input type="checkbox" name="hobby" value="music">音楽
+            <input type="checkbox" name="hobby" value="movie">映画
+            <input type="checkbox" name="hobby" value="walk">散歩
+        </p>
+        <p>
+            <input type="button" name="button" value="確認">
+        </p>
+    </form>
 
     <script src="jquery-3.5.1.min.js"></script>
     <script>
-        let time = 10;
-        let score = 0;
+        $('[type="button"]').click(() => {
+            const name = $('[name="username"]').val();
+            const sex = $('[name="sex"]:checked').val();
 
-        const id = setInterval(() => {
-            if (time < 0) {
-                //タイマーが0になった時の処理
-                clearInterval(id);
-                alert("結果は" + score + "回でした！");
-                time = "更新してください[F5キー]";
-            }
-
-            //カウントダウンを表示する処理
-            $("h1").text(time--);
-        }, 1000);
-
-        //クリックしたときにスコアを1ずつ加算する処理
-        $("#text").on("click", () => score++);
+            console.log(name);
+            console.log(sex);
+            
+            $('[name="hobby"]:checked').each(function() {
+                console.log( $(this).val() );
+            })
+        })
     </script>
 </body>
 
