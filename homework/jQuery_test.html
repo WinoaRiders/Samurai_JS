@@ -4,35 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>スライド</title>
+
     <style>
-        img {
-            width: 10px;
-            opacity: 0;
+        body {
+            text-align: center;
+        }
+        #slide img {
+            margin: auto;
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <button>表示</button>
-    <div>
-        <img src="sample.jpg">
+    <div id="slide">
+        <img src="images/sample1.jpg" alt="">
+        <img src="images/sample2.jpg" alt="">
+        <img src="images/sample3.jpg" alt="">
     </div>
+    <button id="rev">前へ</button>
+    <button id="next">次へ</button>
 
     <script src="jquery-3.5.1.min.js"></script>
     <script>
-        // 画像ファイルはお好きなもので構いません
-        $('button').on('click', () => {
-            $('img').animate({
-                opacity: 1,
-                width: 400
-            }, 1000)
-        })
-        // 画像は1秒間で表示させてください
-        // jQueryから操作するCSSプロパティはwidthとopacityです
-        // 表示する画像のサイズはお好みで調整して構いません
-    </script>
+        const images = $("#slide img")
+        let counter = 0;
+        let index = 0;
 
+        images.eq(index).show();
+        $("#next").click(() => {
+            images.eq(index).hide();
+            index = ++counter % images.length;
+            images.eq(index).fadeIn();
+        })
+
+        $("#rev").click(() => {
+            images.eq(index).hide();
+            index = --counter % images.length;
+            images.eq(index).fadeIn();
+        })
+        console.log(images);
+    </script>
 </body>
 
 </html>
